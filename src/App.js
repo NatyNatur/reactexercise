@@ -7,10 +7,11 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import Paper from 'material-ui/Paper';
 import AppBar from 'material-ui/AppBar';
 import LocationListContainer from './containers/LocationListContainer';
-import ForecastExtended from './components/ForecastExtended';
+import ForecastExtendedContainer from './containers/ForecastExtendedContainer';
 // import { store } from '/.store';
 // import { setCity } from './actions';
 import './App.css';
+
 
 const cities = [
   'Buenos Aires, AR',
@@ -51,9 +52,7 @@ class App extends Component {
             <Col xs={12} md={6}>
               <Paper zDepth={4}>
                 <div className="detail">
-                {
-                  city === null ? <h2 className='forecastTitle'>No se ha seleccionado ciudad</h2> : <ForecastExtended city = {city}></ForecastExtended>
-                }
+                  <ForecastExtendedContainer></ForecastExtendedContainer>
                 </div>
               </Paper>
             </Col>
