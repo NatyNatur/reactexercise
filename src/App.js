@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+// import PropTypes from 'prop-types';
+// import { connect } from 'react-redux';
 // import { createStore } from 'redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import Paper from 'material-ui/Paper';
 import AppBar from 'material-ui/AppBar';
-import LocationList from './components/LocationList';
+import LocationListContainer from './containers/LocationListContainer';
 import ForecastExtended from './components/ForecastExtended';
 // import { store } from '/.store';
-import { setCity } from './actions';
+// import { setCity } from './actions';
 import './App.css';
 
 const cities = [
@@ -27,13 +27,13 @@ window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 */
 
 class App extends Component {
+  // ya no necesito el constructor ya que la App no maneja el estad
   constructor() {
     super();
     this.state = {
       city: null // si no queremos una ciudad en particular
     }
   }
-
   render() {
     const { city } = this.state;
     return (
@@ -46,9 +46,7 @@ class App extends Component {
           </Row>
           <Row>
             <Col xs={12} md={6}>
-              <LocationList cities = { cities }
-               onSelectedLocation = {this.handleSelectionLocation}>
-              </LocationList>
+              <LocationListContainer cities = {cities}></LocationListContainer>
             </Col>
             <Col xs={12} md={6}>
               <Paper zDepth={4}>
@@ -74,14 +72,10 @@ class App extends Component {
   }
 }
 
-// esta función nos deja trabajar con las acciones
-const mapDispatchToPropsActions = (dispatch) => ({
-  setCity: value => dispatch(setCity(value))
-});
 // connect recibe dos funciones en su interior, null no la estamos ocupando
 // mapDispatchToPropsActions
 // toma dos funciones, y su resultado se le agrega a App. Evalúa el estado
-const AppConnected = connect(null, mapDispatchToPropsActions)(App)
+// const AppConnected = connect(null, mapDispatchToPropsActions)(App)
 
 /*
 // son dos funciones
@@ -98,11 +92,10 @@ const componentConnected = connect(2,3);
 componentConnected('App');
 */
 
-
+/*
 App.propTypes = {
   setCity: PropTypes.func.isRequired,
 }
+*/
 
-
-
-export default AppConnected;
+export default App;
