@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // import { createStore } from 'redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -33,18 +34,6 @@ class App extends Component {
     }
   }
 
-  handleSelectionLocation = (city) => {
-    this.setState({city});
-    console.log(`handleSelectionLocation ${city}`);
-    /*
-    const action = {
-      type: 'setCity',
-      value: city,
-    } */ 
-    // ahora dispatch está abajo
-    // store.dispatch(setCity(city));
-    this.props.setCity(city)
-  }
   render() {
     const { city } = this.state;
     return (
@@ -84,11 +73,36 @@ class App extends Component {
     );
   }
 }
+
 // esta función nos deja trabajar con las acciones
 const mapDispatchToPropsActions = (dispatch) => ({
   setCity: value => dispatch(setCity(value))
 });
-
+// connect recibe dos funciones en su interior, null no la estamos ocupando
+// mapDispatchToPropsActions
+// toma dos funciones, y su resultado se le agrega a App. Evalúa el estado
 const AppConnected = connect(null, mapDispatchToPropsActions)(App)
+
+/*
+// son dos funciones
+const connect = (value1, value2) => {
+  console.log(value1);
+  console.log(value2);
+  // se le agrega el resultado de connect al component
+  const result = `${component} - ${value1*value2}`;
+  console.log(result);
+  return result;
+}
+const componentConnected = connect(2,3);
+
+componentConnected('App');
+*/
+
+
+App.propTypes = {
+  setCity: PropTypes.func.isRequired,
+}
+
+
 
 export default AppConnected;
