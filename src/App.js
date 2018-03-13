@@ -29,14 +29,15 @@ window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 class App extends Component {
   // ya no necesito el constructor ya que la App no maneja el estad
+  /*
   constructor() {
     super();
     this.state = {
       city: null // si no queremos una ciudad en particular
     }
-  }
+  }*/
   render() {
-    const { city } = this.state;
+    // const { city } = this.state;
     return (
       <MuiThemeProvider>
         <Grid>
